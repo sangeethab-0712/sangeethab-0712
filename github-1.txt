@@ -1,0 +1,186 @@
+1)HTML:
+--------
+colorpop.html(1-page)
+<html>
+<head>
+<title>colorpop</title>
+</head>
+<body>
+<div class="user-container">
+<img src="https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769" class="user-avatar" alt="Lippie Pencil"/>
+<div>
+<h1>
+colorpop
+</h1>
+<h2>
+lippie pencil
+</h2>
+<a href="color.html"target=_blank rel="noreferrernoopener"><button >
+color ->
+</button> </a><br>
+<label>Lippie Pencil A long-wearing and high-intensity lip pencil that glides on easily</label>
+<input type="range">0.....10</input>
+<li>created at 20.10.2016</li>
+</div>
+</div>
+</body>
+</html>
+********************************************************************************************
+css:
+_________
+.user-container
+{
+  background-color:white;
+  display:flex;
+  gap:1rem;
+  margin:2rem;
+  border-radius:1rem;
+  transition:all .2s;
+}
+body
+{
+  background-image:linear-gradient(torighttop,#1dc3fd,#83a8ff,#d482df,#fb5d93,#eb5f39);
+}
+.user-avatar
+{
+  border-radius:50%;
+}
+.user-name
+{
+  font-size:1.4rem;
+  font-family:"pacifico",cursive;
+}
+.user-container:hover
+{
+  transform:scale(1.1);
+  box-shadow:15px 15px 38px -11px rgba(0,0,0,0.5);
+}
+.user-container:hover
+  color:brown;
+}
+**************************************************************************************************
+
+2)HTML:
+color.html(2-page)
+<html>
+<head>
+<title>color</title>
+</head>
+<body>
+<div class="d">
+<img src="" width="50px"height="50px" />
+<p>BFF Pencil</p>
+</div>
+<div class="e">
+<img src="https://cdn.theatlantic.com/media/img/photo/2019/12/2019-year-volcanic-activity/v01_AP1471832603-1/original.jpg" width="50px"height="50px"/>
+<p>951pencil</p>
+</div>
+<div class="f">
+<img src="https://cdn.shopify.com/s/files/1/1338/0845/products/beeper-pencil_2_800x1200.jpg?v=1625688762"width="50px"height="50px"/>
+<p>beeper pencil</p>
+</div>
+<div class="g">
+<img src="https://cdn.shopify.com/s/files/1/1338/0845/products/after-shock_1.jpg?v=1568783610"width="50px"height="50px"/>
+<p>oh snap</p>
+</div>
+<div class="h">
+<img src="https://m.media-amazon.com/images/I/51yvJsVc5cL.jpg"width="50px"height="50px"/>
+<p>
+toypencil
+</p>
+</div>
+<img src="//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/001/048/original/open-uri20180708-4-13okqci?1531093614" class="io"/>
+<div class="wat">
+<button onclick="deleteuser(${user.id}) class="add_user_name">delete</button>
+<button onclick="adduser(${user.id}) class="add_user_avatar">add</button>
+</div>
+</body>
+</html>
+************************************************************************************************************** 
+**************************************************************************************************************
+CSS:(2-page)
+ .d
+{
+  display:flex;
+  color:red;
+  background-color:orange;
+  border-radius:100px;
+}
+.e
+{
+  display:flex;
+  background-color:orange;
+  color:grey;
+  border-radius:100px;
+}
+.f
+{display:flex;
+background-color:orange;
+color:brown;
+border-radius:100px;}
+.g
+{
+  display:flex;
+  background-color:orange;
+  color:pink;
+  border-radius:100px;
+}
+.w
+{
+  display:flex;
+  background-color:orange;
+  color:lightblue;
+  border-radius:100px;
+} 
+.h
+{
+  display:flex;
+  background-color:orange;
+  color:Brown;
+  border-radius:50%;
+} 
+.wat
+{
+display:flex;
+align-content:center;
+justify-content:center;
+}
+******************************************************************************************************
+2-pagejavascript(fetching data using js(if necessary))(DOM)
+__________
+
+async function getAllusers()
+{
+const data=await fetch("https://makeup-api.herokuapp.com/api/v1/products/1048.json",{method:"GET"});
+const users=await data.json();
+const usercontainer=document.queryselector(".user-list");
+users.foreach((user)=>
+{
+usercontainer.innerHTML+='<div class="user-container">
+<img class="user-avatar" src="${user.image_link}" alt="${user.name}"/>
+<div>
+<p class="user-name">${user.name}</p>
+<button onclick="deleteuser(${user.id}) class="add_user_name">delete</button>
+<button onclick="adduser(${user.id}) class="add_user_avatar">add</button>
+</div>
+</div>'
+});
+window.log(users);
+}
+async function deleteuser(userId)
+{
+const data=await fetch("https://makeup-api.herokuapp.com/api/v1/products/1048.json",{"method":"DELETE"});
+getAllusers();
+}
+async function adduser()
+{
+console.log("Adding");
+const name=document.queryselector(".add_user_name").value;
+const avatar=document.querselector(".add_user_avatar").value;
+console.log(name,avatar);
+const data=await fetch("https://makeup-api.herokuapp.com/api/v1/products/1048.json",{method:"post,headers:{"content-type":"application/json"},body:Json.Stringify({"name":"name","avatar":"avatar"})});
+}
+
+  
+
+
